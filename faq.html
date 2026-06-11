@@ -1,0 +1,779 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>AquaBrain — Frequently asked questions</title>
+<meta name="description" content="Your Brain. Your Digital Twin. Tell your AI once. Answers on how AquaBrain's memory layer works with Claude and other AIs — capture, Lenses, Skills, the Digital Twin, pricing, privacy and more." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+:root {
+  --bg:        #FFFFFF;
+  --bg-1:      #F5F8FA;
+  --bg-2:      #FFFFFF;
+  --bg-3:      #EAEFF3;
+
+  --line:      rgba(14,23,38,0.10);
+  --line-2:    rgba(14,23,38,0.16);
+  --line-aqua: rgba(2,147,154,0.34);
+
+  --ink:       #0E1726;
+  --ink-soft:  #4B5563;
+  --ink-mute:  #8A95A4;
+
+  --aqua-500:  #02E8F0;
+  --aqua-600:  #02C2CA;
+  --aqua-bright:#04FBFF;
+  --teal:      #02939A;
+  --teal-deep: #086A70;
+  --teal-800:  #015359;
+
+  --grad:      linear-gradient(135deg, #04FBFF 0%, #02E8F0 40%, #02C2CA 100%);
+  --grad-text: linear-gradient(120deg, #02939A 0%, #02787E 55%, #015359 100%);
+
+  --shadow-sm: 0 1px 3px rgba(14,23,38,0.06), 0 1px 2px rgba(14,23,38,0.04);
+  --shadow-md: 0 10px 28px -10px rgba(14,23,38,0.16), 0 2px 6px rgba(14,23,38,0.05);
+  --shadow-lg: 0 30px 70px -24px rgba(14,23,38,0.22), 0 6px 16px rgba(14,23,38,0.06);
+  --shadow-aqua: 0 14px 36px -12px rgba(2,194,202,0.55);
+
+  --font-sans: 'Geist', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'Geist Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+
+  --ease:      cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-out:  cubic-bezier(0.16, 1, 0.3, 1);
+
+  --maxw: 1180px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body {
+  font-family: var(--font-sans);
+  background: var(--bg);
+  color: var(--ink);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  font-feature-settings: 'cv11','ss01';
+  overflow-x: hidden;
+}
+a { color: inherit; text-decoration: none; }
+img, svg { display: block; max-width: 100%; }
+button { font: inherit; color: inherit; cursor: pointer; background: none; border: none; }
+::selection { background: rgba(2,232,240,0.32); color: var(--ink); }
+
+.wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 28px; }
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 12px; font-weight: 500;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--teal-deep);
+  display: inline-flex; align-items: center; gap: 9px;
+}
+.eyebrow::before { content: ''; width: 22px; height: 1px; background: var(--teal); display: inline-block; }
+
+h1, h2, h3 { letter-spacing: -0.025em; line-height: 1.08; font-weight: 700; }
+.display { font-size: clamp(40px, 6.4vw, 72px); font-weight: 800; letter-spacing: -0.04em; line-height: 1.0; }
+.h2 { font-size: clamp(26px, 3.4vw, 38px); letter-spacing: -0.03em; }
+.lead { font-size: clamp(17px, 1.6vw, 20px); color: var(--ink-soft); line-height: 1.62; }
+.aqua-text { background: var(--grad-text); -webkit-background-clip: text; background-clip: text; color: transparent; }
+
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 9px;
+  font-weight: 600; font-size: 15px; letter-spacing: -0.005em;
+  border-radius: 999px; padding: 13px 24px;
+  transition: transform 160ms var(--ease), box-shadow 160ms var(--ease), background 160ms var(--ease), border-color 160ms var(--ease);
+  white-space: nowrap;
+}
+.btn--primary { background: var(--grad); color: #04181A; box-shadow: var(--shadow-aqua); }
+.btn--primary:hover { transform: translateY(-2px); box-shadow: 0 18px 44px -12px rgba(4,251,255,0.7); }
+.btn--ghost { border: 1px solid var(--line-2); color: var(--ink); background: var(--bg); }
+.btn--ghost:hover { border-color: var(--teal); color: var(--teal-deep); transform: translateY(-2px); }
+.btn--lg { padding: 16px 30px; font-size: 16px; }
+
+/* ---------- header ---------- */
+.header {
+  position: sticky; top: 0; z-index: 80;
+  background: rgba(255,255,255,0.82);
+  backdrop-filter: saturate(180%) blur(14px);
+  -webkit-backdrop-filter: saturate(180%) blur(14px);
+  border-bottom: 1px solid var(--line);
+}
+.header__row { display: flex; align-items: center; justify-content: space-between; height: 70px; gap: 24px; }
+.brand { display: inline-flex; align-items: center; gap: 11px; font-weight: 600; font-size: 18px; }
+.brand__mark { width: 34px; height: 34px; border-radius: 9px; overflow: hidden; background: #04181A; flex-shrink: 0; box-shadow: 0 0 0 1px var(--line), 0 6px 16px -6px rgba(2,194,202,0.55); display: grid; place-items: center; }
+.brand__mark svg { width: 22px; height: 22px; }
+.brand em { font-style: normal; }
+.brand em span { background: var(--grad-text); -webkit-background-clip: text; background-clip: text; color: transparent; }
+
+.nav { display: flex; align-items: center; gap: 30px; }
+.nav a { font-size: 14px; color: var(--ink-soft); transition: color 140ms var(--ease); }
+.nav a:hover { color: var(--ink); }
+.nav a.is-active { color: var(--teal-deep); }
+.header__cta { display: flex; align-items: center; gap: 14px; }
+.nav-toggle { display: none; }
+
+@media (max-width: 860px) {
+  .nav, .header__cta .btn { display: none; }
+  .nav-toggle { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border: 1px solid var(--line-2); border-radius: 10px; }
+  .nav-toggle span { width: 16px; height: 1.6px; background: var(--ink); position: relative; }
+  .nav-toggle span::before, .nav-toggle span::after { content:''; position:absolute; left:0; width:16px; height:1.6px; background: var(--ink); }
+  .nav-toggle span::before { top: -5px; } .nav-toggle span::after { top: 5px; }
+  .mobile-nav.open { display: flex; }
+}
+.mobile-nav { display: none; flex-direction: column; gap: 4px; padding: 14px 28px 22px; border-bottom: 1px solid var(--line); background: var(--bg); }
+.mobile-nav a { padding: 12px 4px; color: var(--ink-soft); border-bottom: 1px solid var(--line); font-size: 15px; }
+.mobile-nav .btn { margin-top: 14px; }
+
+/* ---------- hero ---------- */
+.hero { position: relative; padding: 76px 0 56px; overflow: hidden; }
+.hero::before {
+  content: ''; position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  background:
+    radial-gradient(640px 420px at 14% 0%, rgba(2,232,240,0.16), transparent 68%),
+    radial-gradient(560px 460px at 92% 20%, rgba(168,217,255,0.24), transparent 70%);
+}
+.hero::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 1px; z-index: 1; background: linear-gradient(90deg, transparent, var(--line-aqua), transparent); }
+.hero .wrap { position: relative; z-index: 2; }
+.hero h1 { margin: 22px 0 0; max-width: 14ch; }
+.hero .lead { margin-top: 22px; max-width: 660px; }
+.hero__tagline { margin-top: 14px; font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.04em; color: var(--teal-deep); }
+
+/* ---------- search ---------- */
+.faqsearch { margin-top: 30px; max-width: 520px; position: relative; }
+.faqsearch input {
+  width: 100%; font: inherit; font-size: 15px; color: var(--ink);
+  padding: 14px 16px 14px 44px; border: 1px solid var(--line-2); border-radius: 12px;
+  background: var(--bg); box-shadow: var(--shadow-sm); outline: none;
+  transition: border-color 140ms var(--ease), box-shadow 140ms var(--ease);
+}
+.faqsearch input:focus { border-color: var(--teal); box-shadow: 0 0 0 3px rgba(2,232,240,0.18); }
+.faqsearch input::placeholder { color: var(--ink-mute); }
+.faqsearch svg { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); width: 18px; height: 18px; stroke: var(--ink-mute); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+/* ---------- layout ---------- */
+.faqmain { padding: 56px 0 90px; }
+.faqlayout { display: grid; grid-template-columns: 230px 1fr; gap: 56px; align-items: start; }
+@media (max-width: 900px) { .faqlayout { grid-template-columns: 1fr; gap: 30px; } }
+
+/* side nav */
+.faqnav { position: sticky; top: 92px; }
+.faqnav__label { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-mute); margin-bottom: 14px; }
+.faqnav ul { list-style: none; display: flex; flex-direction: column; gap: 2px; }
+.faqnav a { display: block; font-size: 14px; color: var(--ink-soft); padding: 8px 12px; border-radius: 9px; border-left: 2px solid transparent; transition: background 140ms var(--ease), color 140ms var(--ease); }
+.faqnav a:hover { color: var(--ink); background: var(--bg-1); }
+.faqnav a.is-active { color: var(--teal-deep); background: rgba(2,232,240,0.08); border-left-color: var(--teal); font-weight: 500; }
+@media (max-width: 900px) {
+  .faqnav { position: static; }
+  .faqnav ul { flex-direction: row; flex-wrap: wrap; gap: 8px; }
+  .faqnav a { border: 1px solid var(--line); border-left: 1px solid var(--line); border-radius: 999px; padding: 7px 14px; }
+  .faqnav a.is-active { border-color: var(--line-aqua); border-left-color: var(--line-aqua); }
+}
+
+/* groups + items */
+.faqgroup { scroll-margin-top: 92px; }
+.faqgroup + .faqgroup { margin-top: 56px; }
+.faqgroup__head { display: flex; align-items: baseline; gap: 14px; padding-bottom: 16px; border-bottom: 1px solid var(--line); }
+.faqgroup__n { font-family: var(--font-mono); font-size: 12px; color: var(--teal-deep); letter-spacing: 0.08em; }
+.faqgroup__h { font-size: 24px; font-weight: 700; letter-spacing: -0.025em; }
+.faqlist { margin-top: 14px; display: flex; flex-direction: column; }
+
+.faq { border-bottom: 1px solid var(--line); }
+.faq[hidden] { display: none; }
+.faq summary {
+  list-style: none; cursor: pointer; padding: 20px 4px 20px 0;
+  display: flex; align-items: center; gap: 18px;
+  font-size: 17px; font-weight: 600; letter-spacing: -0.012em; color: var(--ink);
+  transition: color 140ms var(--ease);
+}
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary:hover { color: var(--teal-deep); }
+.faq summary .q { flex: 1; }
+.faq summary .ico {
+  flex-shrink: 0; width: 26px; height: 26px; border-radius: 8px; border: 1px solid var(--line-2);
+  display: grid; place-items: center; position: relative; transition: border-color 160ms var(--ease), background 160ms var(--ease);
+}
+.faq summary .ico::before, .faq summary .ico::after { content: ''; position: absolute; background: var(--ink-soft); border-radius: 2px; transition: transform 220ms var(--ease), background 160ms var(--ease); }
+.faq summary .ico::before { width: 11px; height: 1.8px; }
+.faq summary .ico::after { width: 1.8px; height: 11px; }
+.faq[open] summary { color: var(--teal-deep); }
+.faq[open] summary .ico { border-color: var(--line-aqua); background: rgba(2,232,240,0.10); }
+.faq[open] summary .ico::after { transform: scaleY(0); }
+.faq[open] summary .ico::before { background: var(--teal-deep); }
+
+.faq__a { padding: 0 44px 24px 0; }
+.faq__a > *:first-child { margin-top: 0; }
+.faq__a p { color: var(--ink-soft); font-size: 15.5px; line-height: 1.68; }
+.faq__a p + p { margin-top: 14px; }
+.faq__a ul { margin: 14px 0 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.faq__a ul li { position: relative; padding-left: 22px; color: var(--ink-soft); font-size: 15px; line-height: 1.6; }
+.faq__a ul li::before { content: ''; position: absolute; left: 2px; top: 10px; width: 6px; height: 6px; border-radius: 50%; background: var(--aqua-500); box-shadow: 0 0 6px 1px var(--aqua-600); }
+.faq__a strong { color: var(--ink); font-weight: 600; }
+.faq__a em { color: var(--ink); font-style: italic; }
+.faq__a code { font-family: var(--font-mono); font-size: 0.86em; color: var(--teal-deep); background: rgba(2,232,240,0.10); border: 1px solid var(--line-aqua); border-radius: 5px; padding: 1px 5px; }
+.faq__a .callout { margin-top: 16px; border-left: 3px solid var(--teal); background: var(--bg-1); border-radius: 0 10px 10px 0; padding: 14px 18px; font-size: 15px; color: var(--ink); }
+
+.noresults { display: none; padding: 40px 0; color: var(--ink-mute); font-size: 15px; }
+.noresults.show { display: block; }
+
+/* ---------- still stuck band ---------- */
+.help { background: var(--bg-1); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 64px 0; }
+.help__card { display: flex; align-items: center; justify-content: space-between; gap: 28px; flex-wrap: wrap; }
+.help__h { font-size: 26px; font-weight: 700; letter-spacing: -0.025em; }
+.help__p { margin-top: 8px; color: var(--ink-soft); font-size: 15.5px; max-width: 520px; }
+
+/* ---------- final band ---------- */
+.final { padding: 92px 0; text-align: center; position: relative; overflow: hidden; background: #0B1220; }
+.final::before {
+  content: ''; position: absolute; inset: 0;
+  background:
+    radial-gradient(520px 320px at 50% 0%, rgba(2,232,240,0.22), transparent 70%),
+    radial-gradient(620px 360px at 50% 110%, rgba(2,147,154,0.30), transparent 70%);
+}
+.final .wrap { position: relative; z-index: 2; }
+.final h2 { font-size: clamp(30px, 4.6vw, 52px); letter-spacing: -0.04em; color: #F4F7FB; }
+.final h2 .aqua-text { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.final p { margin: 20px auto 0; max-width: 540px; color: #AAB6C7; font-size: 17px; }
+.final .btn { margin-top: 34px; }
+.final__micro { margin-top: 18px; font-family: var(--font-mono); font-size: 11.5px; color: #6A7888; letter-spacing: 0.04em; }
+
+/* ---------- footer ---------- */
+.footer { border-top: 1px solid var(--line); padding: 36px 0; background: var(--bg); }
+.footer__row { display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+.footer__links { display: flex; gap: 22px; flex-wrap: wrap; }
+.footer a { font-size: 13px; color: var(--ink-mute); }
+.footer a:hover { color: var(--teal-deep); }
+.footer__copy { font-size: 13px; color: var(--ink-mute); }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="wrap header__row">
+    <a class="brand" href="index.html" aria-label="AquaBrain home">
+      <span class="brand__mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs><linearGradient id="bm" x1="0" y1="0" x2="24" y2="24">
+            <stop offset="0" stop-color="#04FBFF"/><stop offset="0.5" stop-color="#02E8F0"/><stop offset="1" stop-color="#02C2CA"/>
+          </linearGradient></defs>
+          <path d="M12 3.2C8.6 3.2 6 5.8 6 9c0 1.6.7 3 1.7 4 .5.5.8 1.1.8 1.8v1.4A2.8 2.8 0 0 0 11.3 19h1.4a2.8 2.8 0 0 0 2.8-2.8v-1.4c0-.7.3-1.3.8-1.8C17.3 12 18 10.6 18 9c0-3.2-2.6-5.8-6-5.8Z" stroke="url(#bm)" stroke-width="1.6"/>
+          <path d="M12 3.6v15.2M9 9h6M9.4 12.4h5.2" stroke="url(#bm)" stroke-width="1.3" stroke-linecap="round"/>
+        </svg>
+      </span>
+      <em>Aqua<span>Brain</span></em>
+    </a>
+    <nav class="nav">
+      <a href="index.html#how">How it works</a>
+      <a href="index.html#pricing">Pricing</a>
+      <a href="onboarding.html">Getting started</a>
+      <a href="faq.html" class="is-active">FAQ</a>
+    </nav>
+    <div class="header__cta">
+      <a class="btn btn--primary" href="https://app.aquabrain.ai">Open your Brain</a>
+    </div>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span></button>
+  </div>
+  <nav class="mobile-nav" id="mobileNav">
+    <a href="index.html#how">How it works</a>
+    <a href="index.html#pricing">Pricing</a>
+    <a href="onboarding.html">Getting started</a>
+    <a href="faq.html">FAQ</a>
+    <a class="btn btn--primary" href="https://app.aquabrain.ai">Open your Brain</a>
+  </nav>
+</header>
+
+<main id="top">
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <span class="eyebrow">Help &amp; answers</span>
+    <h1 class="display">Frequently asked <span class="aqua-text">questions.</span></h1>
+    <p class="lead">AquaBrain is the memory layer that sits underneath the AIs you already use — so every one of them can read from a persistent, searchable knowledge base that you own. It's not another chat app competing with Claude or ChatGPT.</p>
+    <p class="hero__tagline">Your Brain. Your Digital Twin. Tell your AI once.</p>
+    <div class="faqsearch">
+      <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+      <input type="search" id="faqSearch" placeholder="Search questions…" aria-label="Search questions" autocomplete="off" />
+    </div>
+  </div>
+</section>
+
+<!-- FAQ BODY -->
+<section class="faqmain">
+  <div class="wrap faqlayout">
+
+    <!-- side nav -->
+    <aside class="faqnav" aria-label="Question categories">
+      <div class="faqnav__label">Categories</div>
+      <ul>
+        <li><a href="#big-picture">The big picture</a></li>
+        <li><a href="#capture">Capturing knowledge</a></li>
+        <li><a href="#lenses">Lenses</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#setup">Setup &amp; results</a></li>
+        <li><a href="#surfaces">Surfaces &amp; apps</a></li>
+        <li><a href="#pricing">Pricing &amp; data</a></li>
+      </ul>
+    </aside>
+
+    <!-- content -->
+    <div class="faqcontent">
+
+      <p class="noresults" id="noResults">No questions match that search. Try a different word — or <a href="mailto:hello@aquabrain.ai" style="color:var(--teal-deep);border-bottom:1px solid var(--line-aqua);">email us</a>.</p>
+
+      <!-- GROUP 1 -->
+      <section class="faqgroup" id="big-picture">
+        <div class="faqgroup__head"><span class="faqgroup__n">01</span><h2 class="faqgroup__h">The big picture</h2></div>
+        <div class="faqlist">
+
+          <details class="faq">
+            <summary><span class="q">Why not just use the LLM's built-in memory?</span><span class="ico"></span></summary>
+            <div class="faq__a">
+              <p>Built-in memory — Claude's, ChatGPT's and the rest — has three problems AquaBrain is designed around.</p>
+              <p>First, it's <strong>locked to one product</strong>. What ChatGPT remembers, Claude can't see, and vice versa. Use Claude for code, ChatGPT for drafting and Cursor for a project and each one starts from zero. AquaBrain is one Brain that <em>any</em> AI you use can read from.</p>
+              <p>Second, you <strong>don't own or control it</strong>. The model decides what to keep, in its own opaque format, on the vendor's servers — you can't curate, scope, export or move it. With AquaBrain capture is deliberate, the memory is yours, it's structured into Lenses you define, and you can export everything as Markdown anytime.</p>
+              <p>Third, built-in memory is a <strong>flat pile</strong>, not a scoped retrieval system. It blurs everything you've ever said into one context. AquaBrain pulls back only what's relevant to the conversation you're in — and Lenses keep client A's context from ever bleeding into client B.</p>
+              <p>In short: LLM memory makes one product remember you a bit. AquaBrain gives you a memory layer every product can use, that you actually own.</p>
+            </div>
+          </details>
+
+          <details class="faq">
+            <summary><span class="q">What is "context rot," and how does AquaBrain help?</span><span class="ico"></span></summary>
+            <div class="faq__a">
+              <p>Context rot is the well-known tendency of large language models to get <em>worse</em>, not better, as their context window fills up. Stuffing a long conversation, a giant pasted document or a sprawling memory file into the prompt gives the model more to wade through, more chances to latch onto the wrong detail, and a higher chance of losing the thread or ignoring buried instructions. More context is not the same as better context.</p>
+              <p>AquaBrain's answer is <strong>retrieval, not accumulation</strong>. Instead of carrying your whole history into every conversation, it stores your knowledge as discrete, classified Thoughts and pulls back only the handful that are semantically relevant right now — optionally narrowed further by a Lens. The model gets a small, clean, on-topic slice rather than a swamp.</p>
+              <div class="callout">That's why AquaBrain enforces a deliberately aggressive 1MB-per-file upload cap: it's an ideas exchange, not a library. If a file won't fit, you haven't summarised it — you've dumped it.</div>
+            </div>
+          </details>
+
+          <details class="faq">
+            <summary><span class="q">Why use Claude with AquaBrain?</span><span class="ico"></span></summary>
+            <div class="faq__a">
+              <p>AquaBrain is <strong>Claude-first but not Claude-only</strong>. We lead with Claude because Claude Desktop, Claude Code and Cursor all support the Model Context Protocol (MCP) natively — so with AquaBrain connected, Claude can <em>automatically</em> search your Brain and capture new Thoughts mid-conversation, with no copy-paste. Connect once and it just works in every chat after that.</p>
+              <p>Our positioning sums it up: "Claude has a memory now — but it's the wrong one." Claude's built-in memory is locked to Claude and outside your control. AquaBrain gives Claude the <em>right</em> memory — the decisions, context and your own voice you've captured once and own forever.</p>
+              <p>That said, nothing about AquaBrain requires Claude — see the next question.</p>
+            </div>
+          </details>
+
+          <details class="faq">
+            <summary><span class="q">How do I use AquaBrain with other LLMs (ChatGPT, Gemini, Cursor)?</span><span class="ico"></span></summary>
+            <div class="faq__a">
+              <p>Two paths, depending on whether the tool speaks MCP.</p>
+              <p><strong>MCP-native tools</strong> — Claude Desktop, Claude Code and Cursor — connect directly. Paste your AquaBrain MCP URL once from the <code>/connect</code> page and the AI can then search and capture against your Brain natively, on its own initiative, throughout the conversation. (A Gemini "Gem" with native tool-calling is on the roadmap.)</p>
+              <p><strong>Everything else — including ChatGPT and Gemini today</strong> — works through the <strong>Context Export</strong>. On the Export page you pick a Lens (or run an ad-hoc search), then download a formatted <code>.md</code> file or copy it to your clipboard. Attach or paste it into any AI conversation and you've handed the model exactly the context it needs. Manual rather than automatic, but it works with literally any chat tool.</p>
+              <p>So: the <em>capture</em> side is shared across everything, and on the <em>retrieval</em> side MCP tools get automatic recall while other tools get one-paste-away recall.</p>
+            </div>
+          </details>
+
+          <details class="faq">
+            <summary><span class="q">Why not just keep my background in a Markdown file, Notion or Obsidian?</span><span class="ico"></span></summary>
+            <div class="faq__a">
+              <p>Those are great for <em>writing</em>. They're poor for <em>AI retrieval</em>, which is the whole job here.</p>
+              <p>A single file or a Notion/Obsidian vault is document storage. An AI can't query it semantically — it can only read what you manually paste in, and pasting the whole thing back triggers exactly the context rot above. There's no embedding-based search, no automatic classification, no per-project scoping, no integration with your chat workflow.</p>
+              <p>AquaBrain is <strong>AI-native retrieval, not document storage</strong>. Every Thought is embedded and classified on the way in, so the AI can pull the three relevant items out of three thousand instead of you re-reading and re-pasting. Lenses scope retrieval to a single project or client. And via MCP the AI reaches into the Brain on its own.</p>
+              <p>This isn't a Notion replacement — AquaBrain's own writing surface (Journal Notes) is intentionally small. If you already have an archive, the better move is to <strong>bulk-migrate it in</strong> (drop up to 25 files and walk away) so it becomes AI-retrievable, rather than asking your AI to read your vault.</p>
+            </div>
+          </details>
+
+        </div>
+      </section>
+
+      <!-- GROUP 2 -->
+      <section class="faqgroup" id="capture">
+        <div class="faqgroup__head"><span class="faqgroup__n">02</span><h2 class="faqgroup__h">Capturing and using knowledge</h2></div>
+        <div class="faqlist">
+
+          <details class="faq">
+            <summary><span class="q">How does AquaBrain capture thoughts?</span><span class="ico"></span></summary>
+            <div class="faq__a">
+              <p>A <strong>Thought</strong> is an AI-classified semantic memory. You can create one from many surfaces, and capture is deliberately low-friction:</p>
+              <ul>
+                <li><strong>From your AI client (MCP):</strong> just tell Claude "save this," "save this decision" or "save this thread" and it calls the capture tool. The reflex path.</li>
+                <li><strong>Capture page (web):</strong> paste text from any AI's copy button, upload a file (<code>.md</code>, <code>.txt</code>, <code>.html</code>, <code>.docx</code>, <code>.pdf</code>, images), or use the mobile share target.</li>
+                <li><strong>Bulk migration:</strong> drop up to 25 files at once, let the background worker process them, and get an email when it's done — with suggested Lenses ready to one-click create.</li>
+                <li><strong>Slack:</strong> right-click any message → <em>Save to AquaBrain</em>, or use the <code>/za save</code> slash command (up to 5 workspaces per account).</li>
+                <li><strong>Telegram:</strong> forward a message to your bot, type a thought, or reply <code>/save</code> to any message.</li>
+                <li><strong>Chrome Web Clipper:</strong> save the current page (or your selection) as a Thought.</li>
+              </ul>
+              <p>On the way in, every Thought is embedded for semantic search, auto-tagged with themes and people, and tagged to any Lenses you specify. Captures are de-duplicated by content hash, so re-saving the same thing is a free no-op rather than a duplicate.</p>
+              <div class="callout">One deliberate constraint: Thoughts are immutable once captured — editing them would invalidate their embedding and provenance. You <em>can</em> update or delete a Thought through the AI client if you need to, which re-runs the pipeline.</div>
+            </div>
+          </details>
+
+          <details class="faq">
+            <summary><span class="q">How does AquaBrain use thoughts?</span><span class="ico"></span></summary>
+            <div class="faq__a">
+              <p>Through <strong>retrieval</strong>. When you ask an MCP-connected AI a question, it searches your Brain semantically and pulls back the Thoughts that are actually relevant — not everything you've ever saved. You can scope that search through a Lens so the model only sees, say, your "Acme Engagement" context.</p>
+              <p>Outside MCP, you retrieve by exporting a Lens (or an ad-hoc search) to a <code>.md</code> file and attaching it to any conversation.</p>
+              <p>The result is an AI that already knows your decisions, your context, your key people, and — once you've built a Digital Twin — how you actually think and write, without you re-explaining any of it.</p>
+            </div>
+          </details>
+
+          <details class="faq">
+            <summary><span class="q">What's the difference between a Thought and a Journal Note?</span><span class="ico"></span></summary>
+            <div class="faq__a">
+              <p>They live in the same Brain and share the same Lenses, but they're different objects:</p>
+              <ul>
+                <li>A <strong>Thought</strong> is <em>machine-classified</em> and <em>reflexive</em> — "save this AI response," "capture this decision." It's immutable, embedded and retrieved by semantic search. (Requires AquaBrain Pro.)</li>
+                <li>A <strong>Journal Note</strong> is <em>human-authored</em> and <em>considered</em> — "I want to write this down." It's editable Markdown, organised in a card grid, retrieved by title or Lens. (Free for everyone.)</li>
+              </ul>
+              <p>A Note can be <strong>promoted to a Thought</strong> with one tap ("Save as thought"), which runs its body through the same ingest pipeline and threads it into semantic retrieval. So Notes are where you write; Thoughts are what the AI remembers.</p>
+            </div>
+          </details>
+
+          <details class="faq">
+            <summary><span class="q">What are AquaBrain Journal Notes?</span><span class="ico"></span></summary>
+            <div class="faq__a">
+              <p>Journal Notes are AquaBrain's writing surface — your own deliberate, editable Markdown notes that live inside your Brain. A paragraph, a meeting note, a draft, a snippet you want to keep.</p>
+              <p>They're available on <strong>every tier, free</strong>, on web (<code>/notes</code>, a searchable, filterable, sortable card grid) and iOS (offline-capable, so the idea you have in the elevator doesn't get lost). You can tag them with Lenses, favourite them, import existing notes from Apple Journal or Google Keep, bulk-export them, and promote any to a retrievable Thought when it becomes worth long-term memory.</p>
+              <p>Think of Notes as the considered counterpart to the reflex of capturing a Thought — and as a genuinely free, clean, Lens-tagged notes app even if you never upgrade.</p>
+            </div>
+          </details>
+
+        </div>
+      </section>
+
+      <!-- GROUP 3 -->
+      <section class="faqgroup" id="lenses">
+        <div class="faqgroup__head"><span class="faqgroup__n">03</span><h2 class="faqgroup__h">Lenses</h2></div>
+        <div class="faqlist">
+
+          <details class="faq">
+            <summary><span class="q">How do I use Lenses?</span><span class="ico"></span></summary>
+            <div class="faq__a">
+              <p>A <strong>Lens</strong> is a saved, scoped view of your Brain — effectively a stored semantic query with a name. You use Lenses for two things:</p>
+              <ul>
+                <li><strong>Tagging</strong> — attach a Lens (or several) to a Thought or Note when you capture it, so related material clusters together. A note or thought can carry multiple Lenses.</li>
+                <li><strong>Scoped retrieval</strong> — point a search or export at a Lens and you get back only the material that belongs to it.</li>
+              </ul>
+              <p>The classic use is <strong>one Lens per project or client</strong>, so the AI's context for Client A never bleeds into Client B. You can create Lenses from the AI client (the <code>/aq-lens</code> skill), from web Settings → Lenses, from iOS Settings, or by accepting the suggested Lenses after a bulk migration. Naming is find-or-create and case-insensitive, so you can't accidentally make duplicates.</p>
+              <p>Everyone gets one Lens seeded automatically: <code>DIGITAL-TWIN</code>, the home for your "make the AI sound like me" profile.</p>
+            </div>
+          </details>
+
+          <details class="faq">
+            <summary><span class="q">What are the advanced features for Lenses?</span><span class="ico"></span></summary>
+            <div class="faq__a">
+              <p>The web Settings → Lenses editor carries the power-user controls the simpler iOS form leaves out:</p>
+              <ul>
+                <li><strong>Theme, people and date-window filters</strong> to narrow what a Lens matches.</li>
+                <li>A <strong>semantic seed editor</strong> — tune the underlying query that defines the Lens, rather than relying only on its name and description.</li>
+                <li>A <strong>live preview</strong> that runs the Lens's query and shows matching Thoughts as you tune it.</li>
+                <li>A <strong>✨ Suggest</strong> button to seed a Lens automatically.</li>
+                <li><strong>Export "Save as new Lens,"</strong> which promotes a useful ad-hoc search into a permanent saved Lens.</li>
+              </ul>
+              <p>The rich tuning surfaces stay desk-bound on web; iOS keeps a simpler name-plus-description form for creating a Lens to tag something with on the move.</p>
+            </div>
+          </details>
+
+        </div>
+      </section>
+
+      <!-- GROUP 4 -->
+      <section class="faqgroup" id="skills">
+        <div class="faqgroup__head"><span class="faqgroup__n">04</span><h2 class="faqgroup__h">Skills</h2></div>
+        <div class="faqlist">
+
+          <details class="faq">
+            <summary><span class="q">What are Skills?</span><span class="ico"></span></summary>
+            <div class="faq__a">
+              <p>Skills are <strong>reusable prompt templates</strong> that run inside your AI client. Each one walks the AI through a structured task — capturing a decision, debriefing a meeting, extracting action items — and, where appropriate, saves the result into your Brain with the right classification.</p>
+              <p>There are two types: <strong>Global skills</strong> built and maintained by AquaBrain (available to everyone with MCP access), and <strong>Personal skills</strong> you write yourself (visible only to you).</p>
+              <p>Under the hood, skills are token-efficient: a lightweight routing table tells the AI which skill fits before any heavy content loads, a lean index lists what's available, and the full playbook for a single skill is fetched only when it's actually used.</p>
+            </div>
+          </details>
+
+          <details class="faq">
+            <summary><span class="q">How do I use AquaBrain Skills?</span><span class="ico"></span></summary>
+            <div class="faq__a">
+              <p>Two ways:</p>
+              <ul>
+                <li><strong>Type the slash command</strong> — e.g. <code>/aq-decision</code>, <code>/aq-meeting</code> — and the AI runs that skill straight away.</li>
+                <li><strong>Let the AI offer one</strong> — if it notices from your conversation that a skill fits (you've just made a decision, say), it suggests the matching skill in a single line and runs it only if you confirm.</li>
+              </ul>
+              <p>Read-only "analyse" skills run automatically since they write nothing; capture/generate skills always ask first before writing to your Brain. Skills are available to <strong>every tier with MCP access</strong>, with the usual trial/post-trial limits enforced inside each tool.</p>
+            </div>
+          </details>
+
+          <details class="faq">
+            <summary><span class="q">What are some examples of Skills?</span><span class="ico"></span></summary>
+            <div class="faq__a">
+              <p>At launch, seven Global skills are published:</p>
+              <ul>
+                <li><code>/aq-save</code> — save the current AI response or a highlighted excerpt into your Brain with the right classification.</li>
+                <li><code>/aq-decision</code> — log a decision: what was decided, the reasoning, the alternatives, the stakeholders.</li>
+                <li><code>/aq-meeting</code> — structure a post-meeting debrief: discussed, decided, open questions, who owns each action.</li>
+                <li><code>/aq-themes</code> — run a thematic analysis across recent Thoughts or a time window.</li>
+                <li><code>/aq-extract</code> — scan recent Thoughts and conversations for every pending action item and present a prioritised list.</li>
+                <li><code>/aq-lens</code> — create or find a Lens through a short interview.</li>
+                <li><code>/aq-digital-twin</code> — interview you across 13 areas and build your DIGITAL-TWIN profile.</li>
+              </ul>
+              <p>Several more — person notes, insight capture, tradeoff analysis, a VOICE.md builder, and a skill-builder meta-skill — exist in the system and may be enabled over time.</p>
+            </div>
+          </details>
+
+          <details class="faq">
+            <summary><span class="q">Why would I write my own Skills?</span><span class="ico"></span></summary>
+            <div class="faq__a">
+              <p>Because the most valuable prompts are the ones specific to <em>your</em> recurring work — your weekly review format, your client-onboarding checklist, the exact way you like a draft structured. A Personal skill captures that once so you (and only you) can trigger it by name in any conversation, instead of retyping the same instructions every time.</p>
+              <p>AquaBrain includes a skill-builder meta-skill that helps you design new skills in the house style — diagnosing the task, categorising it (capture / analyse / generate), wiring the right tools, and avoiding common anti-patterns — and produces a paste-ready spec. (The personal-skills management UI is still being finished; in the meantime skills are added via the skill config flow.)</p>
+            </div>
+          </details>
+
+        </div>
+      </section>
+
+      <!-- GROUP 5 -->
+      <section class="faqgroup" id="setup">
+        <div class="faqgroup__head"><span class="faqgroup__n">05</span><h2 class="faqgroup__h">Setting up and getting better results</h2></div>
+        <div class="faqlist">
+
+          <details class="faq">
+            <summary><span class="q">How do I use the Claude instructions / the recall prompt?</span><span class="ico"></span></summary>
+            <div class="faq__a">
+              <p>When you finish onboarding, AquaBrain hands you a <strong>personalised recall prompt</strong> — a "try this in Claude" snippet seeded from your own intake answers — on the MCP connect screen. Pasting it into Claude is how you confirm the connection is live and see your Brain recalled for the first time.</p>
+              <p>More broadly, the way to get the most from an MCP-connected AI is to tell it up front that it has an AquaBrain memory it should search before answering and capture to when you make decisions. Once the connector is attached, the AI sees the available tools and a compact routing table automatically — so you mostly don't micromanage it, but a one-line standing instruction ("check my Brain first, and save anything I decide") makes recall and capture far more consistent.</p>
+            </div>
+          </details>
+
+          <details class="faq">
+            <summary><span class="q">How do I improve the results?</span><span class="ico"></span></summary>
+            <div class="faq__a">
+              <p>Two habits make the biggest difference:</p>
+              <ul>
+                <li><strong>Run <code>/aq-digital-twin</code></strong> to capture how you think, speak and write. It interviews you one question at a time across 13 areas — who you are, what you're working on, your expertise, your key people, communication preferences, tone, formatting rules, vocabulary and more — and produces a <strong>DIGITAL-TWIN.md</strong> profile saved to your Brain (on the DIGITAL-TWIN Lens) and offered as a download. From then on, any AI that reads your Brain knows not just your facts but your <em>voice</em>. Re-running the skill <em>extends</em> the profile rather than duplicating it.</li>
+                <li><strong>Mine your past AI conversations.</strong> Open previous chats with decisions, context or good thinking and use <code>/aq-save</code> with a Lens to pull them into your Brain — tagged to the right project. This back-fills your memory layer with everything you've already worked through, so you're not starting from an empty Brain.</li>
+              </ul>
+              <p>Beyond those: capture little and often (a handful of Thoughts a week beats a once-a-month dump), keep one Lens per project so context stays clean, and bulk-migrate any existing Notion/Obsidian archive so it becomes retrievable.</p>
+            </div>
+          </details>
+
+          <details class="faq">
+            <summary><span class="q">What is the Digital Twin?</span><span class="ico"></span></summary>
+            <div class="faq__a">
+              <p>The Digital Twin is AquaBrain's <strong>personalisation layer</strong> — a generated profile of who you are and how you want an AI to communicate and write <em>for</em> you. It's built by the <code>/aq-digital-twin</code> skill, stored as a <code>DIGITAL-TWIN.md</code> in your Brain, and given its own Lens that every user gets automatically.</p>
+              <p>It's the difference between an AI that knows <em>what</em> you've told it and one that also knows <em>how you'd say it yourself.</em> That's the second half of the brand line: <strong>Your Brain. Your Digital Twin.</strong></p>
+            </div>
+          </details>
+
+        </div>
+      </section>
+
+      <!-- GROUP 6 -->
+      <section class="faqgroup" id="surfaces">
+        <div class="faqgroup__head"><span class="faqgroup__n">06</span><h2 class="faqgroup__h">Surfaces and apps</h2></div>
+        <div class="faqlist">
+
+          <details class="faq">
+            <summary><span class="q">Why do I need the web app or the iOS app?</span><span class="ico"></span></summary>
+            <div class="faq__a">
+              <p>You don't <em>need</em> either to get value from MCP — but they cover the things the AI client can't.</p>
+              <p>The <strong>web app</strong> is where you manage everything that isn't a live chat: your Notes card grid, your Lens editor (with the advanced filters, seed tuning and live preview), the Capture and Export pages, bulk migration, connecting Slack / Telegram / the Chrome extension, and billing. It's the control room for your Brain.</p>
+              <p>The <strong>iOS app</strong> is for thinking on the move — a fast, <strong>offline-capable</strong> capture surface (write a note in the elevator and it syncs when you reconnect) plus Lens management and, on Pro, thought capture and extraction. It exists because mobile ideas otherwise get stranded in Apple Notes and never make it back into your AI workflow. (An Android app is planned once iOS is validated.)</p>
+            </div>
+          </details>
+
+          <details class="faq">
+            <summary><span class="q">What does the Chrome extension do?</span><span class="ico"></span></summary>
+            <div class="faq__a">
+              <p>The <strong>AquaBrain Web Clipper</strong> is a toolbar popup with three actions:</p>
+              <ul>
+                <li><strong>Save as a thought</strong> — capture the page's readable content (or just your selection) straight into your Brain.</li>
+                <li><strong>Save as a new note</strong> — create a Journal Note seeded with the page's URL.</li>
+                <li><strong>Add to an existing note</strong> — append the page URL to a note you already have.</li>
+              </ul>
+              <p>You can tag clips with Lenses and favourite new notes. The Notes actions are free; saving as a Thought (and promoting a note to a Thought) requires AquaBrain Pro. Page content is only ever read when you click — the extension has no standing access to anything you browse. It's distributed unlisted on the Chrome Web Store, and you set it up once by pasting a token from the <code>/connect</code> page.</p>
+            </div>
+          </details>
+
+          <details class="faq">
+            <summary><span class="q">What about Slack and Telegram?</span><span class="ico"></span></summary>
+            <div class="faq__a">
+              <p>Both are paid-tier <strong>capture</strong> surfaces alongside MCP and the Chrome extension.</p>
+              <p><strong>Slack:</strong> right-click any message → <em>Save to AquaBrain</em>, or <code>/za save</code>. You can connect up to 5 workspaces (e.g. personal + work) into one Brain.</p>
+              <p><strong>Telegram:</strong> forward a message to your bot, type a thought directly, or reply <code>/save</code> to a message. There's a solo setup (your own bot) and a team setup (one shared bot where each teammate links their own account). Today it captures text, forwarded text and captions; photos, voice and documents aren't ingested yet.</p>
+            </div>
+          </details>
+
+          <details class="faq">
+            <summary><span class="q">Can I import my existing notes archive?</span><span class="ico"></span></summary>
+            <div class="faq__a">
+              <p>Yes, several ways. The <strong>bulk migration</strong> flow accepts up to 25 files at once (PDF, MD, DOC, DOCX, TXT, JSON, HTML, RTF, CSV) — drop them, walk away, and get an email with suggested Lenses when the worker finishes. For notes apps specifically, there are dedicated importers for <strong>Apple Journal</strong> and <strong>Google Keep</strong> on the <code>/notes</code> page. Re-imports are de-duplicated, so running them twice is safe. (The per-file 1MB cap applies — anything bigger should be distilled first.)</p>
+            </div>
+          </details>
+
+        </div>
+      </section>
+
+      <!-- GROUP 7 -->
+      <section class="faqgroup" id="pricing">
+        <div class="faqgroup__head"><span class="faqgroup__n">07</span><h2 class="faqgroup__h">Pricing, trial, and data</h2></div>
+        <div class="faqlist">
+
+          <details class="faq">
+            <summary><span class="q">How much does AquaBrain cost?</span><span class="ico"></span></summary>
+            <div class="faq__a">
+              <ul>
+                <li><strong>Free</strong> — Journal Notes on web and iOS, Lens management for tagging notes, the Apple Journal and Google Keep importers, and BYOK settings. No card required.</li>
+                <li><strong>AquaBrain Pro — $5/month or $49/year</strong> (about an 18% annual saving). Unlocks Thoughts (capture + semantic retrieval), MCP, Slack and Telegram capture, the Chrome extension's thought-capture, bulk migration, Lens-scoped semantic search, and the Export page.</li>
+              </ul>
+              <p>By comparison, managed-memory competitors run from roughly $19 up to $249/month, often on their servers and locked to developer integrations.</p>
+            </div>
+          </details>
+
+          <details class="faq">
+            <summary><span class="q">How does the free trial work?</span><span class="ico"></span></summary>
+            <div class="faq__a">
+              <p>New signups start on a trial with <strong>full access — unlimited capture and retrieval</strong>. The clock is a <strong>30 calendar-day</strong> window that <strong>starts on your first "extract" action</strong> (your first search/list via MCP, or Export/Copy on the Export page) — not at signup. Before that first read, capture is unlimited and the clock isn't running.</p>
+              <p>Once the 30 days are up, you move to a read-mostly state: capture is paused, your Thoughts data is fully preserved, and you can run <strong>one extract per day</strong>. Upgrading to Pro restores full access immediately, and your data is never deleted — so cancelling and re-subscribing later picks up exactly where you left off.</p>
+            </div>
+          </details>
+
+          <details class="faq">
+            <summary><span class="q">Is my data private and secure? Can I use my own LLM keys?</span><span class="ico"></span></summary>
+            <div class="faq__a">
+              <p>Your Brain is yours, isolated per-user at the database level. AquaBrain earns money from <strong>hosting, never from your LLM usage</strong> — and never sells or advertises against your data.</p>
+              <p>By default, AquaBrain ships with a server-side LLM key, so you can start without setting up anything. If you'd rather own the LLM-spend relationship directly (for billing or compliance), <strong>BYOK</strong> ("bring your own key") is an opt-in setting — your key is encrypted server-side.</p>
+              <p>On security, AquaBrain enforces access-token expiry, server-side secret encryption, rate limiting, and prompt-injection hardening (retrieved Brain content is treated as untrusted data the model must never obey as instructions). The iOS app adds a biometric lock, background privacy cover, and a cache wipe on sign-out. Payments run entirely through Stripe, so AquaBrain never touches your card details.</p>
+            </div>
+          </details>
+
+          <details class="faq">
+            <summary><span class="q">Can I edit or delete a Thought?</span><span class="ico"></span></summary>
+            <div class="faq__a">
+              <p>Thoughts are <strong>immutable once captured</strong> by design — editing the text would invalidate the embedding and provenance that make retrieval work. If you genuinely need to change one, the AI client can update it (which re-runs the full pipeline) or delete it outright. <strong>Journal Notes</strong>, by contrast, have a full edit/delete UI on both web and iOS, because they're your own authored text.</p>
+            </div>
+          </details>
+
+        </div>
+      </section>
+
+      <p style="margin-top:48px;font-size:13px;color:var(--ink-mute);">This FAQ reflects AquaBrain v4.8. Features marked as planned or on the roadmap (a Gemini Gem, Android app, passive auto-capture) are not yet available.</p>
+
+    </div>
+  </div>
+</section>
+
+<!-- STILL STUCK -->
+<section class="help">
+  <div class="wrap help__card">
+    <div>
+      <h2 class="help__h">Still have a question?</h2>
+      <p class="help__p">If you didn't find your answer here, we're a short email away — or jump straight into the three-step setup and see your Brain work in Claude.</p>
+    </div>
+    <div style="display:flex;gap:14px;flex-wrap:wrap;">
+      <a class="btn btn--ghost btn--lg" href="mailto:hello@aquabrain.ai?subject=AquaBrain%20question">Email us</a>
+      <a class="btn btn--primary btn--lg" href="onboarding.html">Get started</a>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL BAND -->
+<section class="final">
+  <div class="wrap">
+    <h2>Tell Claude.<br /><span class="aqua-text">Just once.</span></h2>
+    <p>One memory that belongs to you — not your accounts, not one model. Capture what matters and recall it across every AI you work in.</p>
+    <a class="btn btn--primary btn--lg" href="https://app.aquabrain.ai">Open your Brain</a>
+    <div class="final__micro">No credit card · works with Claude, ChatGPT, Cursor, Claude Code</div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap footer__row">
+    <a class="brand" href="index.html">
+      <span class="brand__mark" style="width:26px;height:26px;" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs><linearGradient id="bmf" x1="0" y1="0" x2="24" y2="24">
+            <stop offset="0" stop-color="#04FBFF"/><stop offset="0.5" stop-color="#02E8F0"/><stop offset="1" stop-color="#02C2CA"/>
+          </linearGradient></defs>
+          <path d="M12 3.2C8.6 3.2 6 5.8 6 9c0 1.6.7 3 1.7 4 .5.5.8 1.1.8 1.8v1.4A2.8 2.8 0 0 0 11.3 19h1.4a2.8 2.8 0 0 0 2.8-2.8v-1.4c0-.7.3-1.3.8-1.8C17.3 12 18 10.6 18 9c0-3.2-2.6-5.8-6-5.8Z" stroke="url(#bmf)" stroke-width="1.6"/>
+          <path d="M12 3.6v15.2M9 9h6M9.4 12.4h5.2" stroke="url(#bmf)" stroke-width="1.3" stroke-linecap="round"/>
+        </svg>
+      </span>
+      <em style="font-size:15px;">Aqua<span>Brain</span></em>
+    </a>
+    <nav class="footer__links">
+      <a href="index.html#how">How it works</a>
+      <a href="index.html#pricing">Pricing</a>
+      <a href="onboarding.html">Getting started</a>
+      <a href="faq.html">FAQ</a>
+      <a href="/privacy">Privacy</a>
+      <a href="/terms">Terms</a>
+    </nav>
+    <div class="footer__copy">© 2026 AquaBrain</div>
+  </div>
+</footer>
+
+<script>
+  // mobile nav
+  var t = document.getElementById('navToggle');
+  var m = document.getElementById('mobileNav');
+  if (t && m) {
+    t.addEventListener('click', function () { m.classList.toggle('open'); });
+    m.querySelectorAll('a').forEach(function (a) {
+      a.addEventListener('click', function () { m.classList.remove('open'); });
+    });
+  }
+
+  // accordion: close siblings within the same group when one opens (single-open per group)
+  document.querySelectorAll('.faqgroup').forEach(function (group) {
+    var items = group.querySelectorAll('details.faq');
+    items.forEach(function (d) {
+      d.addEventListener('toggle', function () {
+        if (d.open) {
+          items.forEach(function (o) { if (o !== d) o.open = false; });
+        }
+      });
+    });
+  });
+
+  // search filter
+  var search = document.getElementById('faqSearch');
+  var allFaqs = Array.prototype.slice.call(document.querySelectorAll('details.faq'));
+  var groups = Array.prototype.slice.call(document.querySelectorAll('.faqgroup'));
+  var noResults = document.getElementById('noResults');
+
+  function runSearch() {
+    var q = search.value.trim().toLowerCase();
+    var anyVisible = false;
+    allFaqs.forEach(function (d) {
+      var text = d.textContent.toLowerCase();
+      var match = q === '' || text.indexOf(q) !== -1;
+      d.hidden = !match;
+      if (match) anyVisible = true;
+      if (q !== '' && match) { /* leave open state as-is */ } else if (q !== '') { d.open = false; }
+    });
+    // hide group heads with no visible items
+    groups.forEach(function (g) {
+      var visible = g.querySelectorAll('details.faq:not([hidden])').length;
+      g.style.display = visible === 0 ? 'none' : '';
+    });
+    noResults.classList.toggle('show', !anyVisible);
+  }
+  if (search) {
+    search.addEventListener('input', runSearch);
+  }
+
+  // side-nav active state on scroll
+  var navLinks = Array.prototype.slice.call(document.querySelectorAll('.faqnav a'));
+  var sections = navLinks.map(function (a) { return document.querySelector(a.getAttribute('href')); });
+  var spy = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) {
+        var id = e.target.id;
+        navLinks.forEach(function (a) {
+          a.classList.toggle('is-active', a.getAttribute('href') === '#' + id);
+        });
+      }
+    });
+  }, { rootMargin: '-30% 0px -60% 0px', threshold: 0 });
+  sections.forEach(function (s) { if (s) spy.observe(s); });
+</script>
+
+</body>
+</html>
